@@ -47,6 +47,10 @@ export class Tool {
       window.scrollTo(0, 0);
     }
   };
+  //延迟
+  seelp = (timeout) => {
+    return new Promise((resolve) => setTimeout(resolve, timeout));
+  };
 }
 
 export const tool = new Tool();
