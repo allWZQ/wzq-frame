@@ -24,9 +24,7 @@ try {
     },
     proxy: {
       '/api': {
-        // target: 'http://52.81.3.63:85',
         target: envUrl.API_HOST,
-        // pathRewrite: { '^/api': '/api' },
         changeOrigin: true,
       }
     }

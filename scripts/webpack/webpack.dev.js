@@ -3,7 +3,6 @@ const basic = require('./webpack.base');
 const { dirs, pages } = require('./base');
 const plugins = [].concat(pages);
 const define = require(dirs.root + `/.greatrc.${process.env.RUN_ENV}`);
-const CopyPlugin = require('copy-webpack-plugin');
 let injectedProcessEnvData = {
   ...define,
 };
@@ -32,7 +31,7 @@ const config = {
 
   devtool: '#source-map',
 
-  plugins: plugins.concat([new webpack.HotModuleReplacementPlugin(), new CopyPlugin([])]),
+  plugins: plugins.concat([new webpack.HotModuleReplacementPlugin()]),
 };
 
 module.exports = config;

@@ -1,9 +1,10 @@
 const webpack = require('webpack');
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
-const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const { dirs } = require('./webpack/base');
 const config = require('./webpack/webpack.prod');
+
+const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 
 const define = require(dirs.root + `/.greatrc.${process.env.RUN_ENV}`);
 config.plugins.push(
@@ -11,7 +12,7 @@ config.plugins.push(
     ...Object.entries(define).reduce(
       (result, [key, value]) => ({ ...result, [key]: JSON.stringify(value) }),
       {}
-    )
+    ),
   })
 );
 
@@ -46,7 +47,7 @@ function build(previousFileSizes) {
 
         messages = formatWebpackMessages({
           errors: [errMessage],
-          warnings: []
+          warnings: [],
         });
       } else {
         messages = formatWebpackMessages(
@@ -71,7 +72,7 @@ function build(previousFileSizes) {
       return resolve({
         stats,
         previousFileSizes,
-        warnings: messages.warnings
+        warnings: messages.warnings,
       });
     });
   });
