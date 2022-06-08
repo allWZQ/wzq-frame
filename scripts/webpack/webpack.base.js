@@ -14,12 +14,5 @@ module.exports = {
       '@assets': path.resolve(dirs.src, './assets')
     }
   },
-
-  // externals: {
-  //   'react': 'React',
-  //   'react-dom': 'ReactDOM',
-  //   'react-router-dom': 'ReactRouterDOM',
-  // },
-
   module: modules
 };

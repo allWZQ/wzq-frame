@@ -8,17 +8,13 @@ const CopyPlugin = require('copy-webpack-plugin');
 const basic = require('./webpack.base');
 const path = require('path');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const { dirs, pages, injectedParams } = require('./base');
+const { dirs, pages } = require('./base');
 const appName = require(dirs.package).name;
 
 const plugins = [].concat(pages);
 const define = require(dirs.root + `/.greatrc.${process.env.RUN_ENV}`);
 let injectedProcessEnvData = {
   ...define,
-  ...{
-    LOG: !!process.env.LOG,
-    ...injectedParams,
-  },
 };
 plugins.push(
   new webpack.DefinePlugin({

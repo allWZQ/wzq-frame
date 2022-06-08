@@ -28,8 +28,7 @@
     "dev": "cross-env RUN_ENV=dev node ./scripts/server.js",
     "pro": "cross-env RUN_ENV=production node ./scripts/server.js",
     "clean:dist": "rimraf ./dist",
-    "build": "npm run clean:dist && cross-env RUN_ENV=production node ./scripts/build.js",
-    "build:dev": "npm run clean:dist && cross-env RUN_ENV=dev node ./scripts/build.js"
+    "build": "npm run clean:dist && cross-env RUN_ENV=production node ./scripts/build.js"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",

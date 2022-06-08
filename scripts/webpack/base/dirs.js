@@ -10,8 +10,6 @@ const dirs = {
   src: path.resolve(root, './src'),
   // 多页面目录
   pages: path.resolve(root, './src/pages'),
-  // 第三方库
-  lib: path.resolve(root, './lib'),
   // 生成目录
   dist: path.resolve(root, './dist'),
   // modules
