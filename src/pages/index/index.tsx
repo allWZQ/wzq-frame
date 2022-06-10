@@ -9,7 +9,9 @@ import AuthRouter from '~/components/auth-route';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 import moment from 'moment';
-import { Main } from '~/routes';
+import { superTool } from '~/utils';
+
+const Main = superTool.getLoadableComponent(() => import('~/routes/Main'));
 
 const App: FC = () => {
   useEffect(() => {
