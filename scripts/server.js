@@ -51,9 +51,8 @@ try {
     }
   });
 } catch (err) {
-  // eslint-disable-next-line @typescript-eslint/prefer-optional-chain
-  if (err && err.message) {
-    console.log(err.message);
+  if (err) {
+    console.log(err);
   }
   process.exit(1);
 }

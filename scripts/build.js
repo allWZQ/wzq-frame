@@ -22,8 +22,6 @@ measureFileSizesBeforeBuild(dirs.dist)
   });
 
 function build(previousFileSizes) {
-  console.log('开始构建...\n');
-
   const compiler = webpack(config);
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
@@ -53,14 +51,6 @@ function build(previousFileSizes) {
           messages.errors.length = 1;
         }
         return reject(new Error(messages.errors.join('\n\n')));
-      }
-
-      if (
-        process.env.CI &&
-        (typeof process.env.CI !== 'string' || process.env.CI.toLowerCase() !== 'false') &&
-        messages.warnings.length
-      ) {
-        return reject(new Error(messages.warnings.join('\n\n')));
       }
 
       return resolve({
