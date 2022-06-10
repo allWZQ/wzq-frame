@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const basic = require('./webpack.base');
 const { dirs, pages } = require('./base');
+const { greatrcProcess } = require('../config');
 const appName = require(dirs.package).name;
 
 const plugins = [].concat(pages);
@@ -10,17 +11,7 @@ const define = require(dirs.root + `/.greatrc.${process.env.RUN_ENV}`);
 let injectedProcessEnvData = {
   ...define,
 };
-plugins.push(
-  new webpack.DefinePlugin({
-    ...Object.entries(injectedProcessEnvData).reduce(
-      (result, [key, value]) => ({
-        ...result,
-        [`process.env.${key}`]: JSON.stringify(value),
-      }),
-      {}
-    ),
-  })
-);
+plugins.push(new webpack.DefinePlugin({ ...greatrcProcess(injectedProcessEnvData) }));
 
 const config = {
   ...basic,

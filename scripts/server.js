@@ -20,21 +20,21 @@ try {
     transportMode: 'ws',
     injectClient: false,
     watchOptions: {
-      ignored: ignoredFiles(dirs.src)
+      ignored: ignoredFiles(dirs.src),
     },
     proxy: {
       '/api': {
         target: envUrl.API_HOST,
         changeOrigin: true,
-      }
-    }
+      },
+    },
   };
 
   const appName = require(dirs.package).name;
   const urls = prepareUrls('http', HOST, PORT, '');
   const devSocket = {
     warnings: (warnings) => devServer.sockWrite(devServer.sockets, 'warnings', warnings),
-    errors: (errors) => devServer.sockWrite(devServer.sockets, 'errors', errors)
+    errors: (errors) => devServer.sockWrite(devServer.sockets, 'errors', errors),
   };
 
   const compiler = createCompiler({
@@ -42,7 +42,7 @@ try {
     config,
     webpack,
     urls,
-    devSocket
+    devSocket,
   });
   const devServer = new WebpackDevServer(compiler, devServerConfigs);
   devServer.listen(PORT, '0.0.0.0', (err) => {
