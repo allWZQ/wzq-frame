@@ -6,7 +6,7 @@ import style from './style.scss';
 const Main: FC = () => {
   return (
     <BaseLayout>
-      <div>新建脚手架</div>
+      <div>新建脚手架{process.env.API_HOST}</div>
     </BaseLayout>
   );
 };
