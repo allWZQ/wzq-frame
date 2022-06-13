@@ -1,39 +1,38 @@
 {
-    "compilerOptions": {
-      "sourceMap": true,
-      "module": "esnext",
-      "target": "es5",
-      "moduleResolution": "node",
-      "types": ["node", "react", "react-dom"],
-      "allowSyntheticDefaultImports": true,
-      "experimentalDecorators": true,
-      "removeComments": true,
-      "noImplicitAny": false,
-      "baseUrl": ".",
-      "jsx": "react",
-      "allowJs": true,
-      "paths": {
-        "*": ["node_modules/*", "src/types/*"],
-        "~/*": ["src/*"]
-      },
-      "downlevelIteration": true
+  "compilerOptions": {
+    //编译器选项
+    "sourceMap": true,
+    "module": "esnext", //模块化规范
+    "target": "es5", //被编译的版本
+    "moduleResolution": "node",
+    "types": ["node", "react", "react-dom"],
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "removeComments": true,
+    "noImplicitAny": false,
+    "baseUrl": ".",
+    "jsx": "react",
+    "allowJs": true,
+    "paths": {
+      "*": ["node_modules/*", "src/types/*"],
+      "~/*": ["src/*"]
     },
-    "awesomeTypescriptLoaderOptions": {
-      "transpileOnly": true
-    },
-    "compileOnSave": true,
-    "include": ["src/**/*"],
-    "exclude": [
-      "config",
-      "public",
-      "node_modules",
-      "build",
-      "dist",
-      "scripts",
-      "acceptance-tests",
-      "scripts/webpack",
-      "jest",
-      "src/setupTests.ts",
-      "jest.config.js"
-    ],
-  }
+    "downlevelIteration": true
+  },
+  "awesomeTypescriptLoaderOptions": {
+    "transpileOnly": true
+  },
+  "compileOnSave": true,
+  "include": [
+    //需要编译的目录
+    "src/**/*"
+  ],
+  "exclude": [
+    //不被ts编译的目录
+    "public",
+    "node_modules",
+    "dist",
+    "scripts",
+    "scripts/webpack"
+  ]
+}
