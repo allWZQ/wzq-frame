@@ -1,11 +1,12 @@
-const webpack = require('webpack');
-const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
-const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
-const { dirs } = require('./webpack/base');
-const config = require('./webpack/webpack.prod');
-const { greatrc } = require('./config');
+const webpack = require("webpack");
+const FileSizeReporter = require("react-dev-utils/FileSizeReporter");
+const formatWebpackMessages = require("react-dev-utils/formatWebpackMessages");
+const { dirs } = require("./webpack/base");
+const config = require("./webpack/webpack.prod");
+const { greatrc } = require("./config");
 
-const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
+const measureFileSizesBeforeBuild =
+  FileSizeReporter.measureFileSizesBeforeBuild;
 
 const define = require(dirs.root + `/.greatrc.${process.env.RUN_ENV}`);
 config.plugins.push(new webpack.DefinePlugin({ ...greatrc(define) }));
@@ -33,8 +34,8 @@ function build(previousFileSizes) {
 
         let errMessage = err.message;
 
-        if (Object.prototype.hasOwnProperty.call(err, 'postcssNode')) {
-          errMessage += '\n打包失败 ' + err['postcssNode'].selector;
+        if (Object.prototype.hasOwnProperty.call(err, "postcssNode")) {
+          errMessage += "\n打包失败 " + err["postcssNode"].selector;
         }
 
         messages = formatWebpackMessages({
@@ -50,7 +51,7 @@ function build(previousFileSizes) {
         if (messages.errors.length > 1) {
           messages.errors.length = 1;
         }
-        return reject(new Error(messages.errors.join('\n\n')));
+        return reject(new Error(messages.errors.join("\n\n")));
       }
 
       return resolve({

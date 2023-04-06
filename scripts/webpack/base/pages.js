@@ -1,7 +1,11 @@
-const path = require("path");
-const dirs = require("./dirs");
-const glob = require("glob"); //利用它匹配出我们想要的目录下的一些文件
-const HtmlWebpackPlugin = require("html-webpack-plugin"); //生成html模版插件 文档地址：https://github.com/jantimon/html-webpack-plugin#options
+const path = require('path');
+const dirs = require('./dirs');
+//利用它匹配出我们想要的目录下的一些文件
+const glob = require('glob');
+//生成html模版插件 文档地址：https://github.com/jantimon/html-webpack-plugin#options
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const isDev = process.env.RUN_ENV === 'dev';
 
 const entries = {};
 const pages = [];
@@ -20,27 +24,26 @@ const minifyOptions = {
   minifyURLs: true, //缩小各种属性中的 URL（使用相关 URL）
 };
 
-glob.sync(path.resolve(dirs.src, "./pages/*/index.tsx")).forEach((item) => {
+glob.sync(path.resolve(dirs.src, './pages/*/index.tsx')).forEach((item) => {
   // 获取文件名
   const name = item.match(/([\w-]+)(?=\/index.tsx)/)[1];
 
   // 选择模板
   const template = path.resolve(dirs.src, `./pages/common.ejs`);
-
   // 载入热更新
   entries[name] = [
-    require.resolve("react-dev-utils/webpackHotDevClient"),
+    isDev ? require.resolve('webpack-dev-server/client') + '?/' : false,
     item,
   ].filter(Boolean);
 
   // 配置
   pages.push(
     new HtmlWebpackPlugin({
-      title: "webpack", //文档标题
+      title: '紫鸟浏览器SuperBrowser-跨境电商店铺安全提速系统', //文档标题
       filename: `${name}.html`, //文件名
       template: template, //模版路径
       inject: true, //注入
-      favicon: path.resolve(dirs.src, "favicon.ico"), //文档icon
+      favicon: path.resolve(dirs.src, 'favicon.ico'), //文档icon
       chunks: [name], //块（单元测试）
       minify: minifyOptions, //压缩规则
     })

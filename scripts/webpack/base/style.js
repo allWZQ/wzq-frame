@@ -1,5 +1,7 @@
-const themes = require('./themes');
-const loader = 'style-loader';
+const isDev = process.env.RUN_ENV !== 'production';
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const loader = isDev ? 'style-loader' : MiniCssExtractPlugin.loader;
+
 
 module.exports = [
   {
@@ -36,7 +38,6 @@ module.exports = [
         loader: 'less-loader',
         options: {
           lessOptions: {
-            modifyVars: themes,
             javascriptEnabled: true,
           },
         },

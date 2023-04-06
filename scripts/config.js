@@ -14,7 +14,7 @@ function greatrcProcess(define) {
   );
 }
 module.exports = {
-  PORT: 8085,
+  PORT: 9001,
   HOST: '0.0.0.0',
   greatrc,
   greatrcProcess,

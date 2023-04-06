@@ -1,8 +1,13 @@
+# 编辑器统一配置
 root = true
 [*]
 indent_style = space
 indent_size = 2
 end_of_line = lf
 charset = utf-8
-trim_trailing_whitespace = true
+
+# 是否删除换行符之前的空白字符
+trim_trailing_whitespace = true 
+
+# 文件是否应以换行符结尾
 insert_final_newline = true

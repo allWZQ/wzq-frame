@@ -1,36 +1,24 @@
 import 'regenerator-runtime/runtime';
-import React, { FC, useEffect } from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'mobx-react';
-import { BrowserRouter, Switch } from 'react-router-dom';
-import RootStore from '~/stores';
+import React, { FC } from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import './style.scss';
-import AuthRouter from '~/components/auth-route';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
-import moment from 'moment';
-import { superTool } from '~/utils';
+import { superTool } from '~/utils/superTool';
 
 const Main = superTool.getLoadableComponent(() => import('~/routes/Main'));
 
 const App: FC = () => {
-  useEffect(() => {
-    moment.locale('zh-cn');
-  }, []);
   return (
     <ConfigProvider locale={zhCN}>
       <BrowserRouter>
-        <Switch>
-          <AuthRouter path="/" component={Main} />
-        </Switch>
+        <Main />
       </BrowserRouter>
     </ConfigProvider>
   );
 };
 
-render(
-  <Provider {...new RootStore()}>
-    <App />
-  </Provider>,
+ReactDOM.createRoot(
   document.getElementById('root')
-);
+).render(<App />);

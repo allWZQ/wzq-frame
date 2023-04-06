@@ -1,11 +1,11 @@
-const dirs = require("./dirs");
-const cssModule = require("./style");
+const dirs = require('./dirs');
+const cssModule = require('./style');
 
 //创建模块，匹配规则 文档地址：https://webpack.docschina.org/configuration/module
 const rules = [
   {
     test: /\.tsx?$/,
-    loader: "babel-loader",
+    loader: 'babel-loader',
     include: dirs.src,
     //文档地址：https://webpack.docschina.org/loaders/babel-loader#options
     //babel配置文档地址：https://babeljs.io/docs/en/options
@@ -13,36 +13,46 @@ const rules = [
       cacheDirectory: true, //优先读缓存
       cacheCompression: false, //当为true时会使用 Gzip 压缩每个 Babel transform 输出
       compact: false, //在紧凑模式下生成代码时，将省略所有可选的换行符和空格。
+      presets: [
+        ['@babel/preset-env'],
+        ['@babel/preset-react', { runtime: 'automatic' }],
+      ],
     },
   },
   {
     test: /\.(json|conf)$/,
     include: dirs.src,
     exclude: /node_modules/,
-    loader: "json-loader",
-    type: "javascript/auto",
+    loader: 'json-loader',
+    type: 'javascript/auto',
   },
   {
     test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
     use: [
       {
-        loader: "url-loader",
+        loader: 'url-loader',
         options: {
           esModule: false,
           limit: 5 * 1000,
           include: dirs.src,
-          name: "images/[path][name].[ext]",
+          name: 'images/[path][name].[ext]',
         },
       },
     ],
   },
   {
     test: /\.ejs$/,
-    loader: "ejs-loader",
+    loader: 'ejs-loader',
     options: {
       esModule: false,
     },
   },
+  {
+    test: /\.m?js/,
+    resolve: {
+      fullySpecified: false,
+    },
+  }
 ];
 
 module.exports = {

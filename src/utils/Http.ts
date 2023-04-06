@@ -1,5 +1,4 @@
-import axios from 'axios';
-import ConstValues from './ConstValues';
+import axios from "axios";
 
 // 创建axios实例
 const Http = axios.create({
@@ -11,20 +10,20 @@ Http.interceptors.request.use(
   async (config) => {
     // 增加固定请求参数
     let data = config.data;
-    let isGet = config.method == 'get';
+    let isGet = config.method == "get";
     if (isGet) {
       data = config.params;
     }
     data = {
       ...data,
     };
-    if (process.env.API_HOST !== 'production') {
+    if (process.env.API_HOST !== "production") {
       // 打印请求参数
-      console.log('----------------');
+      console.log("----------------");
       console.log(config);
       console.log(config.url);
       console.log(JSON.stringify(data));
-      console.log('----------------');
+      console.log("----------------");
     }
     return config;
   },
@@ -37,12 +36,12 @@ Http.interceptors.response.use(
   (response) => {
     let resultData;
     resultData = response.data;
-    if (process.env.API_HOST !== 'production') {
+    if (process.env.API_HOST !== "production") {
       // 打印结果
-      console.warn('----------------');
+      console.warn("----------------");
       console.log(response.config.url);
       console.log(resultData);
-      console.warn('----------------');
+      console.warn("----------------");
     }
     return resultData;
   },
@@ -52,9 +51,8 @@ Http.interceptors.response.use(
     const err = {
       ...error,
       ...error.response,
-      ...{ msg: ConstValues.Notification.NetError }, // 请求失败，可能跟本地网络有关
     };
-    return Promise.reject(err); //
+    return Promise.reject(err);
   }
 );
 
