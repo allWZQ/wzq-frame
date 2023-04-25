@@ -39,7 +39,7 @@ glob.sync(path.resolve(dirs.src, './pages/*/index.tsx')).forEach((item) => {
   // 配置
   pages.push(
     new HtmlWebpackPlugin({
-      title: '紫鸟浏览器SuperBrowser-跨境电商店铺安全提速系统', //文档标题
+      title: 'wzq的脚手架', //文档标题
       filename: `${name}.html`, //文件名
       template: template, //模版路径
       inject: true, //注入
